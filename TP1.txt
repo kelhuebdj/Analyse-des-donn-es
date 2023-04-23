@@ -1,0 +1,192 @@
+                  Enoncé 1 : Exploration de l'arborescence Linux 
+1: ubuntu@ubuntu:~$ pwd 
+  /home/ubuntu
+
+2: ubuntu@ubuntu:~$ cd /usr/share/doc
+
+3: ubuntu@ubuntu:/usr/share/doc$ pwd
+  /usr/share/doc
+
+4: ubuntu@ubuntu:/usr/share/doc$ cd ..
+
+5: ubuntu@ubuntu:/usr/share$ cd
+
+6: ubuntu@ubuntu:~$ cd -
+  /home/ubuntu
+
+7: ubuntu@ubuntu:~$ cd
+
+8: ubuntu@ubuntu:~$ ls
+Desktop Documents Downloads Music Pictures Public Templates Videos 
+
+9: ubuntu@ubuntu:~$ ls-a
+.            .cache    Downloads  Pictures   .sudo_as_admin_successful
+..           .config   .gnupg     .profile   Templates 
+.bash_logout Desktop   .local     public     Videos 
+.bashrc      Documents  Music     .ssh
+
+10: ubuntu@ubuntu:~$ ls -l /usr
+total 0 
+drwxr -xr -x    2  root root   24641   Mar 16 15:45 bin 
+drwxr -xr -x    2  root root      87   Mar 16 15:39 games 
+drwxr -xr -x   11 root root      179   Mar 16 15:42 include 
+drwxr -xr -x    1 root root      120   Mar 16 15:44 lib
+drwxr -xr -x    2 root root        3   Mar 16 15:37 lib32
+drwrx -xr -x    2 root root       43   Mar 16 15:37 lib64
+drwrx -xr -x   13 root root     3476   Mar 16 15:44 libexec
+drwrx -xr -x    2 root root        3   Mar 16 15:37 libx32
+drwrx -xr -x   10 root root      123   Mar 16 15:37 local
+drwrx -xr -x    1 root root      120   Apr 20 15:19 sbin 
+drwrx -xr -x    1 root root       80   Mar 16 15:44 share 
+drwrx -xr -x    4 root root      106   Mar 16 15:40 src 
+
+11: ubuntu@ubuntu:~$ ls -ltr /var/log 
+
+12: ubuntu@ubuntu:~$ ls -R /var 
+
+
+
+              Enoncé 2 : Consultation des fichiers  
+
+
+1:  ubuntu@ubuntu:~$ cat /etc/issue
+       resultat : Ubuntu 20.04.6 LTS \n \l
+2:  ubuntu@ubuntu:~$ less /etc/services 
+
+
+
+              Enoncé 3 : Répertoires 
+
+
+1:  ubuntu@ubuntu:~$ cd 
+
+2:  ubuntu@ubuntu:~$ mkdir chapitre3
+
+3:  ubuntu@ubuntu:~$ cd chapitre3
+
+4:  ubuntu@ubuntu:~/chapitre3$ mkdir rep1/rep2/rep3/rep4
+
+5:  ubuntu@ubuntu:~/chapitre3$ ls -R 
+ .:
+ rep1
+
+ ./rep1:
+ rep2
+
+ ./rep1/rep2:
+ rep3
+
+ ./rep1/rep2/rep3:
+ rep4
+
+ ./rep1/rep2/rep3/rep4:                  
+
+6:  ubuntu@ubuntu:~/chapitre3$ rm rep1 
+ rm: cannot remove 'rep1' : Is a directory 
+
+7:  ubuntu@ubuntu:~/chapitre3$ rm -r rep1
+    ubuntu@ubuntu:~/chapitre3$ ls -R
+ .:
+
+8:  ubuntu@ubuntu:~ mkdir -p ./couleur froide  ./forme/angle  ./forme/courbe
+
+
+
+         Enoncé 4 : Fichiers 
+
+1:  ubuntu@ubuntu:~/chapitre3$ cp /etc/services ~/chapitre/
+
+2:  ubuntu@ubuntu:~/chapitre3$ ls -l /etc/services
+ -rw -r--r--  1 root root 14464 Feb 16  2020  /etc/services 
+
+3:  ubuntu@ubuntu:~/chapitre3$ touch rond carre triangle rectangle vert bleu 
+
+4:  ubuntu@ubuntu:~/chapitre3$ mv rond ./forme/courbe 
+    ubuntu@ubuntu:~/chapitre3$ mv triangle ./forme/angle
+    ubuntu@ubuntu:~/chapitre3$ mv rectangle ./forme/angle
+    ubuntu@ubuntu:~/chapitre3$ mv carre ./forme/angle
+
+5:  ubuntu@ubuntu:~/chapitre3$ mv vert ./couleur/froide
+    ubuntu@ubuntu:~/chapitre3$ mv bleu ./couleur/froide
+
+6:  ubuntu@ubuntu:~/chapitre3$ cd ./couleur 
+    ubuntu@ubuntu:~/chapitre3/couleur$ ls -R 
+      .:
+      froide 
+      ./froide :
+      bleu  vert 
+
+7:  ubuntu@ubuntu:~/chapitre3/couleur$ mv froide chaude 
+
+8:  ubuntu@ubuntu:~/chapitre3/couleur$ cd ./chaude
+    ubuntu@ubuntu:~/chapitre3/couleur/chaude$ mv vert jaune 
+    ubuntu@ubuntu:~/chapitre3/couleur/chaude$ mv bleu rouge 
+
+9:  ubuntu@ubuntu:~/chapitre3/couleur/chaude$ ln rouge rose 
+
+10: ubuntu@ubuntu:~/chapitre3/couleur/chaude$ ln -s rouge orange 
+
+11: ubuntu@ubuntu:~/chapitre3/couleur/chaude$ ls -li 
+
+12: ubuntu@ubuntu:~/chapitre3/couleur/chaude$ ln -s /chapitre3/couleur/chaude/rouge orangeAbsolu 
+
+13: ubuntu@ubuntu:~/chapitre3/couleur/chaude$ cd ..
+    ubuntu@ubuntu:~/chapitre3/couleur$ cd ..
+    ubuntu@ubuntu:~/chapitre3$  mv couleur peinture 
+
+14:  ubuntu@ubuntu:~/chapitre3$ ls orange 
+ls: cannot acces 'orange':no such file or directory
+     ubuntu@ubuntu:~/chapitre3$ ls orangeAbsolu
+ls:cannot access 'orangeAbsolu': No such file or directory 
+
+
+            Enoncé 5 : Droits par défaut 
+
+1:  ubuntu@ubuntu:~/chapitre3$ cd
+    ubuntu@ubuntu:~$ mkdir chapitre5
+
+2:  ubuntu@ubuntu:~$ cd chapitre5
+    ubuntu@ubuntu:~/chapitre5$ 
+
+3:  ubuntu@ubuntu:~/chapitre5$ umask
+    0002  -> cela signifie rw-rw-r--  : le propriétaire et le groupe propriétaire ont les autorisations de lecture et écriture alors que les autres utilisateurs ont seulement des droits de lecture
+
+4:  ubuntu@ubuntu:~/chapitre5$ mkdir rep1
+    ubuntu@ubuntu:~/chapitre5$ touch fich1
+
+5:  ubuntu@ubuntu:~/chapitre5$ ls -l fich1
+    -rw-rw-r--  
+    ubuntu@ubuntu:~/chapitre5$ ls -l rep1
+    Oui , les droits de fich1 et rep2 correspondent au valeur du mask 
+
+6:  ubuntu@ubuntu:~/chapitre5$ umask 027 
+    Cela signifie que : le propriétaire a tous les droits (lecture & écriture & éxecution ) , le groupe a seulement le doit de lecture et éxecution alors qu'aucun droit pour les autres .
+
+7:  ubuntu@ubuntu:~/chapitre5$ mkdir rep2
+    ubuntu@ubuntu:~/chapitre5$ touch fich2
+
+
+8:  ubuntu@ubuntu:~/chapitre5$ ls -l fich2
+    ubuntu@ubuntu:~/chapitre5$ ls -l rep2
+    ubuntu@ubuntu:~/chapitre5$ ls -l rep1 
+    ubunt@ubuntu: ~/chapitre5$ ls -l fich1
+
+    Oui , les droits de fich2 et rep2 correspondent a la nouvelle valeur du masque 027 .
+    Non , les droits de fich1 et rep1 n'ont pas été changés .
+
+
+              Enoncé 6 : Droits des répertoires 
+
+1:  ubuntu@ubuntu:~/chapitre5$ chmod o+r rep1
+    ubuntu@ubuntu:~/chapitre5$ chmod o+w rep1 
+    ubuntu@ubuntu:~/chapitre5$ chmod o+x rep1
+
+2:  ubuntu@ubuntu:~/chapitre5$ chmod -v -c 664 rep2
+    mode of 'rep2' changed from 0750 (rwxr-x---) to 0664 (rw-rw-r--)
+
+3:  ubuntu@ubuntu:~/chapitre5$ mkdir -p tmp/ensakh 
+    ubuntu@ubuntu:~/chapitre5$ chmod -v -c 664 tmp/ensakh
+    mode of 'tmp/ensakh' changed from 0750 (rwxr-x---) to 0664 (rw-rw-r--)
+
+
+
